@@ -634,7 +634,13 @@ export class Objects {
     player.leaves++;
     player.addBoost(0.012);
     const p = pos || l.pos;
-    this.fx.burst(p, 8, { speed: 5, colors: [0xfff3a0, 0xffd23a, 0xffffff], size: 0.45, life: 0.35, drag: 4 });
+    // small sparkles that travel with the hero and spread sideways/up, so a line of pickups
+    // doesn't stack into a white blob between the camera and the hero
+    for (let k = 0; k < 4; k++) {
+      const a = Math.random() * Math.PI * 2;
+      _v.set(Math.cos(a) * 6, 2 + Math.random() * 4, Math.sin(a) * 6).addScaledVector(player.vel, 0.9);
+      this.fx.spawn(p, _v, { color: k % 2 ? 0xffd23a : 0xfff3a0, size: 0.26, life: 0.22, drag: 2, alpha: 0.85 });
+    }
     this.events.emit('leaf', { count: player.leaves });
   }
 

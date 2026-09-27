@@ -779,9 +779,6 @@ export class Game {
           this._tmp.set((Math.random() - 0.5) * 3, Math.random() * 4, (Math.random() - 0.5) * 3).addScaledVector(p.vel, -0.12);
           this.fx.spawn(p.pos, this._tmp, { color: Math.random() < 0.5 ? 0xffd27a : 0xfff6d8, size: 0.28, life: 0.3, drag: 1, gravity: 20 });
         }
-      } else if (p.state === 'ground' && p.speed > 30 && Math.random() < 0.35) {
-        this._tmp.set((Math.random() - 0.5) * 2, Math.random() * 1.2, (Math.random() - 0.5) * 2);
-        this.fx.spawn(p.pos, this._tmp, { color: 0xc9c2b2, size: 0.55, life: 0.3, drag: 3, alpha: 0.16, grow: 1 });
       }
     }
   }
