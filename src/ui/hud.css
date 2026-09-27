@@ -118,6 +118,41 @@ body { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color
 .res-actions { margin-top: 30px; display: flex; gap: 12px; }
 .newrec { display: inline-block; margin-left: 12px; font-size: 16px; letter-spacing: .06em; color: var(--hud-ink); background: var(--hud-yellow);
   padding: 3px 10px; transform: translateY(-4px); text-shadow: none; box-shadow: 3px 3px 0 var(--hud-ink); }
+.results { justify-content: safe center; }
+
+/* Portrait / narrow: title → rank → table → buttons in one centred column, sized to the width. */
+@media (orientation: portrait), (max-width: 640px) {
+  .results { align-items: center; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); background: rgba(8, 18, 60, .74); }
+  .res-title { font-size: clamp(30px, 9.5vw, 64px); margin-bottom: 2px; }
+  .rank { order: 1; position: static; transform: skewX(-10deg); display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .rank .lbl { font-size: clamp(18px, 5vw, 26px); }
+  .rank .letter { font-size: clamp(80px, 22vw, 150px); -webkit-text-stroke-width: 4px; text-shadow: 6px 6px 0 var(--hud-ink); }
+  /* the -12° skew shifts the top rows right and the bottom rows left by ~30px: leave room for it */
+  .res-table { order: 2; width: min(calc(100% - 64px), 420px); grid-template-columns: 1fr auto; gap: 6px 12px; }
+  .res-table .k { font-size: clamp(16px, 4.4vw, 24px); }
+  .res-table .v { font-size: clamp(20px, 5.6vw, 30px); }
+  .res-table .total { font-size: clamp(26px, 7vw, 38px); }
+  .results .newrec { display: block; width: max-content; margin: 4px 0 0 auto; font-size: 12px; transform: none; }
+  .res-actions { order: 3; margin-top: 18px; justify-content: center; }
+  .res-actions .btn.big { font-size: clamp(18px, 4.6vw, 22px); padding: 8px 20px; }
+  .results .stage-card { order: 4; }
+}
+
+/* Short landscape (phones): keep the side-by-side layout, but make it fit the height. */
+@media (orientation: landscape) and (max-height: 480px) {
+  .results { padding-top: 8px; padding-bottom: 8px; }
+  .res-title { font-size: clamp(26px, 5vw, 40px); margin-bottom: 6px; }
+  .res-table { gap: 2px 28px; }
+  .res-table .k { font-size: 15px; }
+  .res-table .v { font-size: 19px; }
+  .res-table .total { font-size: 24px; }
+  .results .newrec { font-size: 12px; transform: translateY(-2px); }
+  .res-actions { margin-top: 10px; }
+  .res-actions .btn.big { font-size: 16px; padding: 6px 18px; }
+  .rank { top: 50%; }
+  .rank .lbl { font-size: 20px; }
+  .rank .letter { font-size: clamp(90px, 28vh, 150px); }
+}
 
 .pause { background: rgba(4, 10, 30, .6); }
 .pause .ttl { font-weight: 900; font-style: italic; font-size: 64px; transform: skewX(-12deg); text-shadow: 5px 5px 0 var(--hud-ink); margin-bottom: 20px; }
