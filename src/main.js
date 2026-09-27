@@ -1,5 +1,8 @@
 import { Game } from './Game.js';
 import { installDebugTools } from './core/debugTools.js';
+import { preventPageZoom } from './ui/noZoom.js';
+
+preventPageZoom();
 
 function fail(err) {
   console.error(err);

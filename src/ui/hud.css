@@ -9,7 +9,10 @@
 }
 
 html, body { margin: 0; height: 100%; background: #000; overflow: hidden; touch-action: none; overscroll-behavior: none; }
-body { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+body { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* No pan / pinch / double-tap zoom on anything in the game (taps still click). touch-action is not
+   inherited, so name the elements; see ui/noZoom.js for the iOS Safari side. */
+#app, #app *, #ui, #ui * { touch-action: none; }
 
 #ui { position: fixed; inset: 0; pointer-events: none; font-family: var(--font-display); color: var(--hud-white); z-index: 10; }
 #ui * { box-sizing: border-box; }
